@@ -1,0 +1,19 @@
+{
+  "name": "edugo-api",
+  "version": "1.0.0",
+  "description": "mini backend project",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec",
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "Dante Perea",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "express": "^4.17.1",
+    "mocha": "^6.2.2",
+    "request": "^2.88.0"
+  }
+}
