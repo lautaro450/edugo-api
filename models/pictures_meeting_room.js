@@ -5,7 +5,6 @@ module.exports = (sequelize, DataTypes) => {
     url: DataTypes.STRING
   }, {});
   pictures_meeting_room.associate = function(models) {
-    pictures_meeting_room.belongsTo(models.meeting_room);
   };
   return pictures_meeting_room;
 };

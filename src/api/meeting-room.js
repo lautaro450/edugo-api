@@ -14,7 +14,7 @@ exports.create = function(req,res) {
     if(name == null || description == null || capacity == null) {
         return res.status(400).send('name,description or capacity are null')
     }
-
+    // checking if meeting_room_name already exists, then it can't be created
     const meeting_rooms_data = db.meeting_room.findAll({
         where: {
             name: name
@@ -24,10 +24,22 @@ exports.create = function(req,res) {
             return res.status(400).send('meeting room name already exists')
         } else {
             return db.meeting_room.create({
-                name, description, capacity,
+                name, description, capacity
             })
             .then((meeting_room) => {
-                res.send("test "+meeting_room.id)   
+                const pictures = req.body.pictures;
+                const meeting_room_id = meeting_room.id;
+                for(i=0;i<pictures.length;i++){
+                    for(var key in pictures[i]){
+                        let url = pictures[i][key]
+                        db.pictures_meeting_room.create({
+                            meeting_room_id: meeting_room_id, 
+                            url: url
+                        });
+                    }
+                }
+            }).then((pictures_meeting_room) => {
+                res.send("test "+pictures_meeting_room);
             })
             .catch((err) => {
                 console.log('error trying to add new meeting room: ', JSON.stringify(meeting_room))

@@ -6,7 +6,6 @@ module.exports = (sequelize, DataTypes) => {
     capacity: DataTypes.INTEGER
   }, {});
   meeting_room.associate = function(models) {
-    meeting_room.hasMany(models.pictures_meeting_room);
   };
   return meeting_room;
 };
