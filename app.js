@@ -39,7 +39,7 @@ app.post('/api/users', user.create); // additional: add new users
 //meeting room
 app.get('/api/meeting-room',auth.isUser, meeting_room.list);
 app.post('/api/meeting-room',auth.isAdmin, meeting_room.create);
-app.put('/api/meeting-room',auth.isAdmin, meeting_room.update);
+app.put('/api/meeting-room/:id',auth.isAdmin, meeting_room.update);
 app.delete('/api/meeting-room/:id', auth.isAdmin, meeting_room.delete);
 
 app.get("/", function(req, res) {
