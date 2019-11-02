@@ -6,7 +6,7 @@ exports.isUser = function(req, res, next) {
         jwt.verify(token, 'secret', { algorithm: "HS256" }, (err, user) => {   
             
             if (err) { 
-                res.status(500).json({ error: "Not Authorized" });
+                res.status(400).json({ error: "Not Authorized" });
                 throw new Error("Not Authorized");
             }
             return next();

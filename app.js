@@ -2,10 +2,12 @@ var express = require("express");
 var app = express();
 const jwt = require('jsonwebtoken');
 var user = require('./src/api/user');
-var auth = require('./src/auth.js')
+var auth = require('./src/auth')
 var meeting_room = require('./src/api/meeting-room');
 const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+
 // jwt token examples to send in header (Authorization: <jwt-token>)
 app.get("/auth/user", function(req, res) {
     let token = jwt.sign({
@@ -31,13 +33,18 @@ app.get("/auth/admin", function(req, res) {
 });
 
 // user
-app.get('/api/users', user.list);
-app.post('/api/users', user.create);
-app.get('/api/meeting-room',auth.isAdmin, meeting_room.list);
-app.get
+app.get('/api/users', user.list); // additional: list of users
+app.post('/api/users', user.create); // additional: add new users
+
+//meeting room
+app.get('/api/meeting-room',auth.isUser, meeting_room.list);
+app.post('/api/meeting-room',auth.isAdmin, meeting_room.create);
+app.put('/api/meeting-room',auth.isAdmin, meeting_room.update);
+app.delete('/api/meeting-room/:id', auth.isAdmin, meeting_room.delete);
 
 app.get("/", function(req, res) {
 
 });
 
 app.listen(3000);
+module.exports = app;

@@ -32,8 +32,10 @@
     "uuid": "^3.3.3"
   },
   "devDependencies": {
+    "chai-http": "^4.3.0",
     "nodemon": "^1.19.4",
     "nyc": "^14.1.1",
-    "sequelize-auto-migrations": "^1.0.3"
+    "sequelize-auto-migrations": "^1.0.3",
+    "supertest": "^4.0.2"
   }
 }
