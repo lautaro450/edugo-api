@@ -42,9 +42,6 @@ app.post('/api/meeting-room',auth.isAdmin, meeting_room.create);
 app.put('/api/meeting-room/:id',auth.isAdmin, meeting_room.update);
 app.delete('/api/meeting-room/:id', auth.isAdmin, meeting_room.delete);
 
-app.get("/", function(req, res) {
-
-});
 
 app.listen(3000);
 module.exports = app;

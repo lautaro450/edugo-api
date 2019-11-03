@@ -6,6 +6,10 @@ module.exports = (sequelize, DataTypes) => {
     capacity: DataTypes.INTEGER
   }, {});
   meeting_room.associate = function(models) {
+    meeting_room.hasMany(models.pictures_meeting_room, {
+      foreignKey: 'meeting_room_id',
+      as: 'pictures'
+    });
   };
   return meeting_room;
 };
