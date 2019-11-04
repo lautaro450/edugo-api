@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'meeting_room_id',
       as: 'pictures'
     });
+    meeting_room.hasMany(models.appointment_meeting_room, {
+      foreignKey: 'meeting_room_id',
+      as: 'appointments'
+    });
   };
   return meeting_room;
 };

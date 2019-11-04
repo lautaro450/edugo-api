@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 var user = require('./src/api/user');
 var auth = require('./src/auth')
 var meeting_room = require('./src/api/meeting-room');
+var appointment = require('./src/api/appointment');
 const bodyParser = require('body-parser');
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -42,6 +43,8 @@ app.post('/api/meeting-room',auth.isAdmin, meeting_room.create);
 app.put('/api/meeting-room/:id',auth.isAdmin, meeting_room.update);
 app.delete('/api/meeting-room/:id', auth.isAdmin, meeting_room.delete);
 
-
+//appointments
+app.post('/api/appointment', auth.isUser, appointment.create);
+app.delete('/api/appointment/:id', auth.isUser, appointment.delete);
 app.listen(3000);
 module.exports = app;

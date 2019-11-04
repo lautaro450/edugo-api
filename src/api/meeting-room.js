@@ -1,13 +1,18 @@
 const db = require('../../models');
 const sequelize = require('../../models').sequelize
 const pictures_meeting_room_model = require('../../models').pictures_meeting_room;
+const appointments_meeting_room_model = require('../../models').appointment_meeting_room;
 exports.list = function(req,res) {
     return db.meeting_room
       .findAll({
         include: [{
           model: pictures_meeting_room_model,
           as: 'pictures'
-        }],
+        },
+    {
+        model: appointments_meeting_room_model,
+        as: 'appointments'
+    }],
       })
       .then((meeting_rooms) => {return res.status(200).send(meeting_rooms)})
       .catch((error) => { return res.status(400).send(error); });
