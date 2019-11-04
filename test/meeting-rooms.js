@@ -6,14 +6,13 @@ var chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
 dummy_user_data = {
-    'name': 'fake_name',
+    'name': 'unit_testing',
     'description': 'fake_description',
     'capacity': 6
 }
 user_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuaWNrbmFtZSI6IkpvaG4gU21pdGgiLCJyb2xlcyI6W119LCJpYXQiOjE1NzI2ODM0NTh9.EJ3CbKsEm-9-OorlweLciM2D8NNBiYTm4eF6ILAabj0';
 admin_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuaWNrbmFtZSI6IkpvaG4gU21pdGgiLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNTcyNjg0NzQ4fQ.oXeD1NxZkLHdPf1BHGMCFpKpgDuX0bWQTrgV9n6mzZ0'
 describe("Meeting rooms", function() {
-    var url = "http://localhost:3000/api/meeting-room";
     describe("see meeting rooms", function() {
         it("GET /api/meeting-room returns status 200", function(done) {
             request(app)
@@ -111,7 +110,7 @@ describe("Meeting rooms", function() {
         });
         it("pictures id can't be null",function(done){
             request(app)
-            .put('/api/meeting-room/5')
+            .put('/api/meeting-room/1')
             .set("Authorization",admin_token)
             .send({
                 "name": "unit_testing", 
