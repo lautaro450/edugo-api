@@ -33,9 +33,6 @@ app.get("/auth/admin", function(req, res) {
         res.send(token);
 });
 
-// user
-app.get('/api/users', user.list); // additional: list of users
-app.post('/api/users', user.create); // additional: add new users
 
 //meeting room
 app.get('/api/meeting-room',auth.isUser, meeting_room.list);
