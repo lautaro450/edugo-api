@@ -71,11 +71,12 @@ exports.delete = function(req,res){
           }
           //I should check that the user who wants to delete the appointment is the user who did
           // the appointment but i didn't
-          appointment.destroy()
+          var appointment_date = new Date(appointment['date'].toString());
+          const hours_until_appointment = Math.abs(appointment_date - Date.now()) / 36e5;
+          if(hours_until_appointment > 1) {
+            appointment.destroy()
+          } else {
+            return res.status(400).send("you can't cancel the appointment because it will be in less than 1 hour.")
+          }
         })
-      .then(() => res.send({ id }))
-      .catch((err) => {
-        console.log('Error cancelling appointment', JSON.stringify(err))
-        return res.status(400).send(err)
-      })
 }
